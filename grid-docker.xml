@@ -7,22 +7,22 @@
   <listeners>
 	  <listener class-name="utilites.ExtentReportManager" />
   </listeners>
-  
-   
-  
-  <test name="Linux-Chrome">
-    <parameter name="os" value="Linux"/>
-    <parameter name="browser" value="chrome"/>
-     
-    <classes>
-           <class name="testCases.TC001_AccountRegistrationTest"/> 
-     		<class name="testCases.TC_002_LoginTest"/>
-    </classes>
-  </test> 
-  
- 
 
- <test name="Linux-Firefox">
+    <test name="Linux-Chrome">
+        <parameter name="os" value="Linux"/>
+        <parameter name="browser" value="chrome"/>
+
+        <classes>
+            <class name="testCases.TC001_AccountRegistrationTest"/>
+            <class name="testCases.TC_002_LoginTest"/>
+        </classes>
+    </test>
+
+
+
+
+
+    <test name="Linux-Firefox">
     <parameter name="os" value="Linux"/>
     <parameter name="browser" value="firefox"/>
      
