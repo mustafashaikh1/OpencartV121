@@ -24,7 +24,7 @@ public class DataProviders {
 		{		
 			for(int j=0;j<totalcols;j++)  //0    i is rows j is col
 			{
-				logindata[i-1][j]= xlutil.getCellData("Sheet1",i, j); //i-1 because we are starting from 1st row in excel and array starts from 0
+				logindata[i-1][j]= xlutil.getCellData("Sheet1",i, j);  //1,0
 			}
 		}
 	return logindata;//returning two dimension array

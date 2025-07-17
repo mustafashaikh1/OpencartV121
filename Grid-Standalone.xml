@@ -9,28 +9,28 @@
     </listeners>
 
 
-
-    <test name="Linux-Chrome">
-        <parameter name="os" value="Linux"/>
+    <test name="Windows-Chrome">
+        <parameter name="os" value="Windows"/>
         <parameter name="browser" value="chrome"/>
-
         <classes>
             <class name="testCases.TC001_AccountRegistrationTest"/>
             <class name="testCases.TC_002_LoginTest"/>
+            <class name="testCases.TC_004_SearchProductTest" />
+            <class name="testCases.TC_005_AddToCartPageTest" />
         </classes>
     </test>
 
-
-
-    <test name="Linux-Firefox">
-        <parameter name="os" value="Linux"/>
-        <parameter name="browser" value="firefox"/>
+    <test name="Windows-Edge">
+        <parameter name="os" value="Windows"/>
+        <parameter name="browser" value="edge"/>
 
         <classes>
+            <class name="testCases.TC_002_LoginTest"/>
+            <class name="testCases.TC001_AccountRegistrationTest"/>
             <class name="testCases.TC_004_SearchProductTest" />
             <class name="testCases.TC_005_AddToCartPageTest" />
         </classes>
     </test>
 
 
-</suite> <!-- Suite -->
+</suite> 

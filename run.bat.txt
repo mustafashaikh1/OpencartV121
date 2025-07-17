@@ -1,2 +1,28 @@
-D:\Selenium Projects\Hybrid_FrameWork\OpencartV121> 
-mvn clean
+  @Override
+    public List<String> getAll(String role, String email, String branchCode) {
+        if (!permissionService.hasPermission(role, email, "GET")) {
+            throw new AccessDeniedException("No permission to view mappings");
+        }
+
+        List<HostelWebUrlMapping> mappings = repository.findAllByBranchCode(branchCode);
+
+        // Convert List<HostelWebUrlMapping> to List<String> (just dynamicPart)
+        return mappings.stream()
+                .map(HostelWebUrlMapping::getDynamicPart)
+                .toList(); // For Java 16+. If using Java 8+, use collect(Collectors.toList())
+    }
+
+
+
+
+@GetMapping("/getAllWebUrl")
+    public ResponseEntity<?> getAll(@RequestParam String role,
+                                    @RequestParam String email,
+                                    @RequestParam String branchCode) {
+        try {
+            List<String> dynamicParts = service.getAll(role, email, branchCode);
+            return ResponseEntity.ok(dynamicParts);
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(403).body(e.getMessage());
+        }
+    }
