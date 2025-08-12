@@ -97,13 +97,13 @@ public class ExtentReportManager implements ITestListener {
 		test.log(Status.INFO, result.getThrowable().getMessage());
         test.log(Status.SKIP, MarkupHelper.createLabel("Name of Faild test case is: " + result.getName(), ExtentColor.RED));
 		
-		/*try {
+		try {
 			String imgPath = new BaseClass().captureScreen(result.getName());
 			test.addScreenCaptureFromPath(imgPath);
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}*/
+		}
 		
 	}
 
