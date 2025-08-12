@@ -24,6 +24,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.Markup;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -92,6 +95,7 @@ public class ExtentReportManager implements ITestListener {
 		
 		test.log(Status.FAIL,result.getName()+" got failed");
 		test.log(Status.INFO, result.getThrowable().getMessage());
+        test.log(Status.SKIP, MarkupHelper.createLabel("Name of Faild test case is: " + result.getName(), ExtentColor.RED));
 		
 		/*try {
 			String imgPath = new BaseClass().captureScreen(result.getName());
@@ -108,7 +112,9 @@ public class ExtentReportManager implements ITestListener {
 		test.assignCategory(result.getMethod().getGroups());
 		test.log(Status.SKIP, result.getName()+" got skipped");
 		test.log(Status.INFO, result.getThrowable().getMessage());
-	}
+        test.log(Status.SKIP, MarkupHelper.createLabel("Name of Skip test case is: " + result.getName(), ExtentColor.YELLOW));
+
+    }
 
 	public void onFinish(ITestContext testContext) {
 		

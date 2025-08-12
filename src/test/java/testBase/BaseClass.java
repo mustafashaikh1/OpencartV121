@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
@@ -32,7 +31,7 @@ public class BaseClass {
     public Logger logger;
     public Properties p;
 
-    @BeforeClass(groups = {"Sanity", "Regression", "Master"})
+    @BeforeClass(groups = {"Sanity", "Regression", "Master"})//
     @Parameters({"os", "browser"})
     public void setup(String os, String br) throws IOException {
 
@@ -47,30 +46,30 @@ public class BaseClass {
         String env = p.getProperty("execution_env");
         logger.info("🌐 Execution Environment: " + env);
 
-                  // Remote WebDriver setup
-		if (env.equalsIgnoreCase("remote")) {
-			logger.info("🧪 Setting up Local WebDriver on Selenium Grid...");
-			DesiredCapabilities capabilities = new DesiredCapabilities();
+        // Remote WebDriver setup
+        if (env.equalsIgnoreCase("remote")) {
+            logger.info("🧪 Setting up Local WebDriver on Selenium Grid...");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
 
-			// OS configuration
-			if (os.equalsIgnoreCase("windows")) {
-				capabilities.setPlatform(Platform.WIN11);
-				logger.info("🪟 Windows platform selected");
-			} else if (os.equalsIgnoreCase("mac")) {
-				capabilities.setPlatform(Platform.MAC);
-				logger.info("🍏 Mac platform selected");
-			} else {
-				logger.error("❌ No matching OS found: " + os);
-				return;
-			}
+            // OS configuration
+            if (os.equalsIgnoreCase("windows")) {
+                capabilities.setPlatform(Platform.WIN11);
+                logger.info("🪟 Windows platform selected");
+            } else if (os.equalsIgnoreCase("mac")) {
+                capabilities.setPlatform(Platform.MAC);
+                logger.info("🍏 Mac platform selected");
+            } else {
+                logger.error("❌ No matching OS found: " + os);
+                return;
+            }
 
             switch (br.toLowerCase()) {
                 case "chrome":
-					logger.info("🔵 Chrome browser selected");
+                    logger.info("🔵 Chrome browser selected");
                     capabilities.setBrowserName("chrome");
-					break;
+                    break;
                 case "edge":
-					logger.info("🔷 Edge browser selected");
+                    logger.info("🔷 Edge browser selected");
                     capabilities.setBrowserName("MicrosoftEdge");
                     break;
                 default:
@@ -81,7 +80,7 @@ public class BaseClass {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
             logger.info("✅ Remote WebDriver initialized.");
 
-                       // Local WebDriver setup
+            // Local WebDriver setup
         } else if (env.equalsIgnoreCase("local")) {
             logger.info("🧪 Setting up Local WebDriver...");
             switch (br.toLowerCase()) {
@@ -91,11 +90,11 @@ public class BaseClass {
                     break;
                 case "edge":
                     driver = new EdgeDriver();
-					logger.info("🔷 Launched Edge browser");
+                    logger.info("🔷 Launched Edge browser");
                     break;
                 case "firefox":
                     driver = new FirefoxDriver();
-					logger.info("🦊 Launched Firefox browser");
+                    logger.info("🦊 Launched Firefox browser");
                     break;
                 default:
                     logger.error("❌ Invalid browser name: " + br);
@@ -106,7 +105,7 @@ public class BaseClass {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = p.getProperty("appURL2");
+        String url = p.getProperty("appURL2");// URL from properties file
         driver.get(url);
         logger.info("🔗 Navigated to URL: " + url);
 
